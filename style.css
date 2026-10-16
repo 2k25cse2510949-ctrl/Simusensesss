@@ -1,81 +1,1064 @@
-:root {
-  --bg-primary: #0a0e17;
-  --bg-surface: #121826;
-  --bg-card: #1a2234;
-  --border-color: #27334a;
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --accent: #6366f1;
-  --accent-hover: #4f46e5;
-  --danger: #ef4444;
-  --success: #10b981;
-  --warning: #f59e0b;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SimuSense — Sanctuary of Clarity &amp; Decision</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-body { background-color: var(--bg-primary); color: var(--text-main); padding: 24px 16px; line-height: 1.5; }
-.app-container { max-width: 1250px; margin: 0 auto; }
-.header { margin-bottom: 20px; }
-.header-top { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
-.badge { background: rgba(99, 102, 241, 0.2); color: #818cf8; font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 4px; text-transform: uppercase; }
-.version-tag { color: var(--text-muted); font-size: 12px; }
-.header h1 { font-size: 26px; font-weight: 700; }
-.header p { color: var(--text-muted); font-size: 14px; margin-top: 4px; }
-.card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; }
+  <style>
+    :root {
+      /* Soothing Aurora Palette */
+      --bg-gradient: radial-gradient(circle at 15% 15%, #0f172a 0%, #090d16 50%, #05070c 100%);
+      --surface-glass: rgba(18, 25, 43, 0.65);
+      --surface-card: rgba(23, 32, 54, 0.75);
+      --border-subtle: rgba(148, 163, 184, 0.12);
+      --border-glow: rgba(99, 102, 241, 0.3);
+      
+      --text-main: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      
+      --teal-serene: #14b8a6;
+      --emerald-heal: #10b981;
+      --lavender-calm: #818cf8;
+      --indigo-peace: #6366f1;
+      --rose-warm: #fb7185;
+      --amber-gentle: #fbbf24;
+      --coral-soft: #f87171;
+    }
 
-.dilemma-card { margin-bottom: 20px; border: 1px solid var(--accent); background: #141b2d; }
-textarea { width: 100%; padding: 12px 14px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; color: #fff; font-size: 14px; resize: vertical; outline: none; margin: 10px 0; }
-textarea:focus { border-color: var(--accent); }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif; }
+    
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      padding: 32px 18px;
+      line-height: 1.65;
+      min-height: 100vh;
+      background-attachment: fixed;
+    }
 
-.preset-chips { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px; }
-.chip-label { font-size: 12px; color: var(--text-muted); font-weight: 600; }
-.chip { background: var(--bg-card); color: #cbd5e1; border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: all 0.2s; }
-.chip:hover { border-color: var(--accent); color: #fff; background: rgba(99, 102, 241, 0.15); }
+    .app-container {
+      max-width: 1220px;
+      margin: 0 auto;
+    }
+    
+    /* Top Header & Serenity Branding */
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
 
-/* Conclusion Banner */
-.conclusion-card { margin-bottom: 24px; border-left: 4px solid var(--accent); background: #151f33; }
-.conclusion-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-.conclusion-header h3 { font-size: 16px; font-weight: 600; }
-.verdict-text { font-size: 14px; color: #cbd5e1; margin-bottom: 14px; }
-.conclusion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.conclusion-box { background: var(--bg-card); padding: 12px; border-radius: 6px; border: 1px solid var(--border-color); }
-.conclusion-label { font-size: 11px; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 4px; }
-.conclusion-box strong { font-size: 13px; color: #f1f5f9; }
+    .badge-sanctuary {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(20, 184, 166, 0.2) 100%);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      color: #a5b4fc;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 30px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
 
-.dashboard-grid { display: grid; grid-template-columns: 460px 1fr; gap: 24px; }
-@media (max-width: 950px) { .dashboard-grid { grid-template-columns: 1fr; } .conclusion-grid { grid-template-columns: 1fr; } }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-top: 6px;
+    }
 
-.profile-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
-.badge-accent { background: rgba(16, 185, 129, 0.2); color: #34d399; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
-h2 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
-.section-desc { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-.form-group { margin-bottom: 12px; }
-label { display: block; font-size: 12px; font-weight: 500; color: var(--text-muted); margin-bottom: 4px; }
-label strong { color: #fff; }
-input, select { width: 100%; padding: 9px 12px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 13px; outline: none; }
-input:focus, select:focus { border-color: var(--accent); }
-.divider { height: 1px; background: var(--border-color); margin: 18px 0; }
-.dynamic-inputs-box { background: var(--bg-card); border: 1px dashed var(--border-color); border-radius: 8px; padding: 14px; margin-bottom: 16px; }
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-top: 4px;
+      max-width: 680px;
+    }
 
-.btn-primary { width: 100%; padding: 12px; background: var(--accent); color: #fff; font-size: 14px; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; transition: background 0.2s; }
-.btn-primary:hover { background: var(--accent-hover); }
-.btn-secondary { width: 100%; padding: 10px; background: transparent; color: #cbd5e1; font-size: 13px; font-weight: 600; border: 1px solid var(--border-color); border-radius: 6px; cursor: pointer; }
-.btn-secondary:hover { background: var(--bg-card); color: #fff; }
+    /* Translate Box Pill */
+    .translate-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(18, 25, 43, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-subtle);
+      padding: 6px 14px;
+      border-radius: 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+    .translate-box span { font-size: 12px; color: var(--text-muted); }
+    #google_translate_element select {
+      background: rgba(30, 41, 69, 0.9);
+      color: #e2e8f0;
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      outline: none;
+      cursor: pointer;
+    }
 
-.results-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
-.subtitle { font-size: 12px; color: var(--text-muted); }
-.status-pill { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; }
-.status-safe { background: rgba(16, 185, 129, 0.2); color: #34d399; }
-.status-danger { background: rgba(239, 68, 68, 0.2); color: #f87171; }
-.status-warn { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+    /* Smooth Glass Cards */
+    .glass-card {
+      background: var(--surface-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .glass-card:hover {
+      border-color: rgba(99, 102, 241, 0.25);
+      box-shadow: 0 14px 40px -10px rgba(0, 0, 0, 0.5);
+    }
 
-.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
-.stat-card { background: var(--bg-card); border: 1px solid var(--border-color); padding: 12px; border-radius: 8px; }
-.stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; }
-.stat-value { font-size: 17px; font-weight: 700; margin-top: 4px; }
-.chart-container { height: 330px; position: relative; margin-bottom: 20px; }
-.insights-card { background: var(--bg-card); border-left: 4px solid var(--accent); border-radius: 4px; padding: 14px 18px; }
-.insights-card h3 { font-size: 13px; margin-bottom: 8px; }
-.insights-card ul { padding-left: 18px; font-size: 13px; color: var(--text-muted); }
-.insights-card li { margin-bottom: 5px; }
+    /* Input Sanctuary */
+    .dilemma-card {
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      background: linear-gradient(180deg, rgba(23, 32, 54, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+    }
+    
+    textarea {
+      width: 100%;
+      padding: 16px;
+      background: rgba(10, 15, 26, 0.65);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 15px;
+      resize: vertical;
+      outline: none;
+      margin: 12px 0 14px 0;
+      min-height: 90px;
+      line-height: 1.6;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    textarea:focus {
+      border-color: var(--lavender-calm);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+
+    /* Preset Chips */
+    .preset-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .chip-label { font-size: 12px; color: var(--text-muted); font-weight: 600; }
+    .chip {
+      background: rgba(30, 41, 69, 0.6);
+      color: #cbd5e1;
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      padding: 7px 15px;
+      border-radius: 30px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .chip:hover {
+      border-color: var(--lavender-calm);
+      color: #fff;
+      background: rgba(99, 102, 241, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .btn-tranquil {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #4f46e5 0%, #0d9488 100%);
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px -4px rgba(79, 70, 229, 0.4);
+      letter-spacing: 0.2px;
+    }
+    .btn-tranquil:hover {
+      background: linear-gradient(135deg, #4338ca 0%, #0f766e 100%);
+      box-shadow: 0 8px 24px -2px rgba(79, 70, 229, 0.55);
+      transform: translateY(-1px);
+    }
+
+    /* Verdict Card */
+    .conclusion-card {
+      border-left: 4px solid var(--teal-serene);
+      background: linear-gradient(180deg, rgba(17, 24, 39, 0.75) 0%, rgba(15, 23, 42, 0.85) 100%);
+    }
+    .conclusion-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .status-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 30px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .status-safe { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .status-danger { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .status-warn { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+
+    /* Pros & Cons Balanced Cards */
+    .tradeoff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 18px; }
+    .tradeoff-box {
+      padding: 18px;
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+    }
+    .tradeoff-pros {
+      background: linear-gradient(180deg, rgba(16, 185, 129, 0.08) 0%, rgba(16, 185, 129, 0.02) 100%);
+      border-color: rgba(16, 185, 129, 0.25);
+    }
+    .tradeoff-cons {
+      background: linear-gradient(180deg, rgba(239, 68, 68, 0.08) 0%, rgba(239, 68, 68, 0.02) 100%);
+      border-color: rgba(239, 68, 68, 0.25);
+    }
+    .tradeoff-box h4 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 15-Step Blueprint */
+    .detailed-solution-card {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 22px;
+      margin-top: 20px;
+    }
+    .detailed-solution-card h3 {
+      font-size: 15px;
+      color: #a5b4fc;
+      margin-bottom: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .detailed-solution-card ol {
+      padding-left: 20px;
+      font-size: 13.5px;
+      line-height: 1.9;
+      color: #cbd5e1;
+    }
+    .detailed-solution-card li { margin-bottom: 4px; }
+
+    /* Storyboard Picture-to-Picture */
+    .p2p-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+    @media (max-width: 768px) { .p2p-container { grid-template-columns: 1fr; } }
+    .p2p-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .p2p-card:hover { border-color: rgba(99, 102, 241, 0.3); transform: translateY(-2px); }
+    .p2p-icon { font-size: 34px; margin-bottom: 8px; }
+    .p2p-title { font-size: 13px; font-weight: 700; color: #f8fafc; margin-bottom: 4px; }
+    .p2p-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+    /* Harmonic Simulation Canvases */
+    .ai-video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+    .ai-video-card {
+      background: rgba(15, 23, 42, 0.6);
+      padding: 18px;
+      border-radius: 14px;
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+    }
+    .canvas-wrapper {
+      position: relative;
+      width: 100%;
+      height: 190px;
+      background: radial-gradient(circle at center, #0a0f1d 0%, #03060c 100%);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.1);
+    }
+    .canvas-wrapper canvas { width: 100%; height: 100%; display: block; }
+    .canvas-overlay-text {
+      position: absolute;
+      bottom: 8px;
+      left: 10px;
+      right: 10px;
+      font-size: 11px;
+      color: #f8fafc;
+      background: rgba(5, 7, 12, 0.75);
+      backdrop-filter: blur(8px);
+      padding: 5px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Workspace Dashboard Grid */
+    .dashboard-grid { display: grid; grid-template-columns: 380px 1fr; gap: 20px; }
+    @media (max-width: 950px) {
+      .dashboard-grid { grid-template-columns: 1fr; }
+      .tradeoff-grid { grid-template-columns: 1fr; }
+      .ai-video-grid { grid-template-columns: 1fr; }
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 5px; font-weight: 500; }
+    input {
+      width: 100%;
+      padding: 10px;
+      background: rgba(10, 15, 26, 0.65);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus { border-color: var(--teal-serene); }
+
+    /* Health Rings & KPI Pill Stats */
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
+    @media (max-width: 600px) { .stats-row { grid-template-columns: 1fr 1fr; } }
+    .stat-card {
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid var(--border-subtle);
+      padding: 14px 10px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .stat-label { font-size: 10.5px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .stat-value { font-size: 16px; font-weight: 700; margin-top: 5px; }
+
+    .chart-container { height: 320px; position: relative; margin-top: 8px; }
+
+    /* Google Translate hidden clutter fix */
+    .goog-te-gadget { font-size: 0px !important; }
+    .goog-te-gadget span { display: none !important; }
+    .goog-te-banner-frame { display: none !important; }
+    body { top: 0px !important; }
+  </style>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      try {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+          autoDisplay: false
+        }, 'google_translate_element');
+      } catch (e) {
+        console.warn("Translation tool ready");
+      }
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
+</head>
+<body>
+  <div class="app-container">
+    
+    <header class="top-nav">
+      <div>
+        <div class="badge-sanctuary">
+          <span>✨</span>
+          <span>SimuSense Universal Core</span>
+        </div>
+        <h1>Sanctuary of Clarity &amp; Decision</h1>
+        <p class="subtitle">A serene space to decompress life dilemmas across physical well-being, emotional peace, relationships, animal companions, or finances.</p>
+      </div>
+
+      <div class="translate-box">
+        <span>🌐 Language:</span>
+        <div id="google_translate_element"></div>
+      </div>
+    </header>
+
+    <!-- 1. Dilemma Sanctuary Input -->
+    <section class="glass-card dilemma-card">
+      <h2 style="font-size: 16px; font-weight: 600;">1. What is weighing on your mind or body today?</h2>
+      <textarea id="userDilemma" rows="3" placeholder="Pour out anything freely: 'wrist pain', 'dog is suffering from terminal cancer', 'toxic boss is draining me', 'working 80 hours with 4 hours sleep', 'have 1200 rupees where to invest', 'feeling lost and alone'"></textarea>
+
+      <div class="preset-chips">
+        <span class="chip-label">Gentle Starters:</span>
+        <button type="button" class="chip" onclick="handlePreset('wrist')">🦴 Wrist &amp; Joint Pain</button>
+        <button type="button" class="chip" onclick="handlePreset('pet')">🐶 Companion in Pain</button>
+        <button type="button" class="chip" onclick="handlePreset('toxic')">💔 Toxic Environment</button>
+        <button type="button" class="chip" onclick="handlePreset('burnout')">⚡ Overwork &amp; Sleep Debt</button>
+        <button type="button" class="chip" onclick="handlePreset('money')">💰 Rs 1200 Allocation</button>
+      </div>
+
+      <button type="button" class="btn-tranquil" onclick="compileAndSimulate()">Analyze Dilemma &amp; Synthesize Healing Roadmap</button>
+    </section>
+
+    <!-- 2. Verdict & Equilibrium Banner -->
+    <section class="glass-card conclusion-card" id="conclusionCard">
+      <div class="conclusion-header">
+        <div>
+          <span class="status-pill status-safe" id="verdictPill">Harmonized Path</span>
+          <span id="detectedArchetype" style="font-size: 13px; color: #a5b4fc; margin-left: 10px; font-weight: 600;"></span>
+        </div>
+      </div>
+      <div id="verdictSummary" style="font-size: 14.5px; color: #cbd5e1; margin-top: 6px; line-height: 1.7;"></div>
+      
+      <!-- Pros and Cons Trade-off Matrix -->
+      <div class="tradeoff-grid">
+        <div class="tradeoff-box tradeoff-pros">
+          <h4 style="color: #34d399;">✅ The Reclaimed Upside (Taking Action)</h4>
+          <ul id="prosList" style="font-size: 13px; padding-left: 18px; color: #cbd5e1; line-height: 1.7;"></ul>
+        </div>
+        <div class="tradeoff-box tradeoff-cons">
+          <h4 style="color: #f87171;">⚠️ The Friction of Inaction (If Ignored)</h4>
+          <ul id="consList" style="font-size: 13px; padding-left: 18px; color: #cbd5e1; line-height: 1.7;"></ul>
+        </div>
+      </div>
+
+      <!-- Comprehensive 15-Point Blueprint -->
+      <div class="detailed-solution-card">
+        <h3>📋 Step-by-Step Tactical Blueprint (15 Actionable Steps)</h3>
+        <ol id="detailedPlanList"></ol>
+      </div>
+    </section>
+
+    <!-- 3. Picture-to-Picture Storyboard -->
+    <section class="glass-card">
+      <h2 style="font-size: 16px; margin-bottom: 4px; font-weight: 600;">🖼️ Visual Transformation Journey</h2>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 6px;">Visualizing your dilemma's current strain, the deliberate turning point, and restored peace.</p>
+      <div class="p2p-container" id="p2pContainer"></div>
+    </section>
+
+    <!-- 4. Fluid Procedural Motion Studios -->
+    <section class="glass-card">
+      <h2 style="font-size: 16px; margin-bottom: 4px; font-weight: 600;">🌊 Ocean of Equilibrium (Generative Visual Simulators)</h2>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 6px;">Fluid harmonic waves representing real-time internal friction loops versus restorative healing flows.</p>
+      <div class="ai-video-grid">
+        <div class="ai-video-card">
+          <h4 style="color: #f87171; font-size: 13px; margin-bottom: 8px;">🔴 The Friction Wave (Inaction &amp; Stress Loop)</h4>
+          <div class="canvas-wrapper">
+            <canvas id="problemCanvas" width="480" height="190"></canvas>
+            <div class="canvas-overlay-text" id="problemSubtitle">Harmonizing stress currents...</div>
+          </div>
+        </div>
+        <div class="ai-video-card">
+          <h4 style="color: #34d399; font-size: 13px; margin-bottom: 8px;">🟢 The Restorative Current (Active Recovery)</h4>
+          <div class="canvas-wrapper">
+            <canvas id="solutionCanvas" width="480" height="190"></canvas>
+            <div class="canvas-overlay-text" id="solutionSubtitle">Synthesizing healing trajectory...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Workspace Dashboard -->
+    <main class="dashboard-grid">
+      <!-- Sliders / Vector State Inputs -->
+      <section class="glass-card">
+        <h2 style="font-size: 15px; margin-bottom: 12px; font-weight: 600;">2. Situation Energy Vectors</h2>
+        <div class="form-row">
+          <div><label>Physical Vitality (0–100)</label><input type="number" id="v_vitality" value="80" oninput="runSimulation()"></div>
+          <div><label>Mental Calm (0–100)</label><input type="number" id="v_mental" value="70" oninput="runSimulation()"></div>
+        </div>
+        <div class="form-row">
+          <div><label>Emotional Balance (0–100)</label><input type="number" id="v_emotional" value="65" oninput="runSimulation()"></div>
+          <div><label>Stress Pulse (0–100)</label><input type="number" id="v_distress" value="30" oninput="runSimulation()"></div>
+        </div>
+        <div class="form-row">
+          <div><label>Capital Involved (Rs)</label><input type="number" id="v_capital" value="0" oninput="runSimulation()"></div>
+          <div><label>Monthly Capacity (Rs)</label><input type="number" id="v_income" value="20000" oninput="runSimulation()"></div>
+        </div>
+      </section>
+
+      <!-- Comparative Trajectory Graph -->
+      <section class="glass-card">
+        <div class="stats-row">
+          <div class="stat-card"><div class="stat-label">Physical Vitality</div><div class="stat-value" id="kpi_vitality" style="color: var(--teal-serene);">80 / 100</div></div>
+          <div class="stat-card"><div class="stat-label">Mental Peace</div><div class="stat-value" id="kpi_mental" style="color: var(--mental);">70 / 100</div></div>
+          <div class="stat-card"><div class="stat-label">Emotional Heart</div><div class="stat-value" id="kpi_emotional" style="color: var(--emotional);">65 / 100</div></div>
+          <div class="stat-card"><div class="stat-label">Life Equilibrium</div><div class="stat-value" id="kpi_equilibrium" style="color: #cbd5e1;">72%</div></div>
+        </div>
+
+        <h3 style="font-size: 13.5px; font-weight: 600; margin-bottom: 6px; color: #cbd5e1;">📈 Equilibrium Trajectory: Current Inaction vs. Active Healing</h3>
+        <div class="chart-container">
+          <canvas id="trajectoryChart"></canvas>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    let myChart = null;
+    let problemAnimId = null;
+    let solutionAnimId = null;
+    let currentDilemmaType = "general";
+    let activeTopic = "Life Situation";
+
+    const presets = {
+      wrist: "wrist pain",
+      pet: "my dog is suffering from bone cancer and severe pain",
+      toxic: "my boss is toxic and insults me everyday",
+      burnout: "working 80 hours a week sleeping 4 hours feeling depressed",
+      money: "I have 1200 rupees where should I invest it"
+    };
+
+    function handlePreset(key) {
+      const el = document.getElementById("userDilemma");
+      if (el && presets[key]) {
+        el.value = presets[key];
+        compileAndSimulate();
+      }
+    }
+
+    function parseUniversalDilemma(rawText) {
+      const text = (rawText || "").trim();
+      const clean = text.toLowerCase();
+      
+      const scores = { physical: 0, animal: 0, toxic: 0, burnout: 0, existential: 0, financial: 0 };
+
+      const physicalDict = ["wrist", "hand", "finger", "arm", "elbow", "spine", "back", "knee", "leg", "neck", "shoulder", "pain", "ache", "sore", "hurt", "strain", "sprain", "carpal", "tendon", "rsi", "injury", "headache", "migraine"];
+      physicalDict.forEach(term => { if (clean.includes(term)) scores.physical += 3; });
+
+      const animalDict = ["dog", "cat", "pet", "animal", "puppy", "kitten", "vet", "euthanasia", "put down", "put him down"];
+      animalDict.forEach(term => { if (clean.includes(term)) scores.animal += 4; });
+
+      const toxicDict = ["toxic", "boss", "manager", "gaslight", "abuse", "insult", "partner", "relationship", "breakup", "divorce", "quit", "resign"];
+      toxicDict.forEach(term => { if (clean.includes(term)) scores.toxic += 3.5; });
+
+      const burnoutDict = ["burnout", "sleep", "insomnia", "exhaust", "tired", "80 hour", "70 hour", "overwork", "grind", "drained"];
+      burnoutDict.forEach(term => { if (clean.includes(term)) scores.burnout += 3.5; });
+
+      const existentialDict = ["void", "empty", "depress", "crying", "meaning", "lost", "lonely", "robot", "hollow", "purpose", "why live"];
+      existentialDict.forEach(term => { if (clean.includes(term)) scores.existential += 3.5; });
+
+      const financialDict = ["invest", "shares", "stock", "mutual fund", "crypto", "sip", "deposit", "gold", "where to put money", "rupee", "rupees", "rs", "₹", "savings"];
+      financialDict.forEach(term => { if (clean.includes(term)) scores.financial += 3.5; });
+
+      let highestCategory = "general";
+      let maxScore = 0;
+      for (const [cat, score] of Object.entries(scores)) {
+        if (score > maxScore) { maxScore = score; highestCategory = cat; }
+      }
+
+      let extractedCapital = 0;
+      const numMatch = clean.match(/(?:₹|rs\.?|inr)?\s*([\d,.]+)\s*(k|lakh|lac|cr|rupees|rs)?/i);
+      if ((scores.financial > 0 || clean.includes("rupee") || clean.includes("rs") || clean.includes("₹")) && numMatch && numMatch[1]) {
+        let val = parseFloat(numMatch[1].replace(/,/g, ''));
+        let unit = (numMatch[2] || '').toLowerCase();
+        if (unit === 'k') val *= 1000;
+        else if (unit === 'lakh' || unit === 'lac') val *= 100000;
+        else if (unit === 'cr') val *= 10000000;
+        if (!isNaN(val) && val > 0) extractedCapital = val;
+      }
+
+      activeTopic = text.length > 35 ? text.substring(0, 35) + "..." : (text || "Life Situation");
+
+      const res = {
+        capital: extractedCapital,
+        income: 20000,
+        mental: 70,
+        emotional: 65,
+        vitality: 80,
+        distress: 35,
+        type: highestCategory,
+        topicText: activeTopic
+      };
+
+      if (highestCategory === "physical") { res.vitality = 25; res.distress = 70; res.mental = 50; }
+      else if (highestCategory === "animal") { res.emotional = 20; res.distress = 90; res.mental = 35; }
+      else if (highestCategory === "toxic") { res.emotional = 25; res.mental = 35; res.distress = 80; }
+      else if (highestCategory === "burnout") { res.vitality = 35; res.mental = 30; res.distress = 75; }
+      else if (highestCategory === "existential") { res.mental = 25; res.emotional = 30; res.distress = 80; }
+      else if (highestCategory === "financial") { res.mental = 75; res.distress = 20; if (res.capital === 0) res.capital = 1200; }
+
+      return res;
+    }
+
+    function compileAndSimulate() {
+      const area = document.getElementById("userDilemma");
+      const text = area ? area.value.trim() : "";
+      const p = parseUniversalDilemma(text);
+
+      document.getElementById("v_capital").value = p.capital;
+      document.getElementById("v_mental").value = p.mental;
+      document.getElementById("v_emotional").value = p.emotional;
+      document.getElementById("v_vitality").value = p.vitality;
+      document.getElementById("v_distress").value = p.distress;
+
+      startHarmonicVisualizers(p.type, p.topicText);
+      runSimulation(p.type, p.capital, p.topicText);
+    }
+
+    function runSimulation(typeOverride, capOverride, topicOverride) {
+      let capital = parseFloat(document.getElementById("v_capital").value) || capOverride || 0;
+      let mental = parseFloat(document.getElementById("v_mental").value) || 70;
+      let emotional = parseFloat(document.getElementById("v_emotional").value) || 65;
+      let vitality = parseFloat(document.getElementById("v_vitality").value) || 80;
+      let type = typeOverride || currentDilemmaType || "general";
+      let topic = topicOverride || activeTopic || "Life Situation";
+
+      const years = 5;
+      let inactionTimeline = [];
+      let recoveryTimeline = [];
+
+      let curInaction = Math.round((vitality + mental + emotional) / 3);
+      let curRecovery = curInaction;
+
+      for (let yr = 1; yr <= years; yr++) {
+        curInaction = Math.max(15, Math.round(curInaction * 0.88 - 3));
+        curRecovery = Math.min(96, Math.round(curRecovery + (100 - curRecovery) * 0.42));
+        inactionTimeline.push(curInaction);
+        recoveryTimeline.push(curRecovery);
+      }
+
+      renderDiagnosisDetails(type, capital, topic);
+      updateKPIs(vitality, mental, emotional);
+      renderComparativeChart(inactionTimeline, recoveryTimeline);
+      renderP2PStoryboard(type);
+    }
+
+    function renderDiagnosisDetails(type, capital, topic) {
+      const pill = document.getElementById("verdictPill");
+      const arch = document.getElementById("detectedArchetype");
+      const summary = document.getElementById("verdictSummary");
+      const prosList = document.getElementById("prosList");
+      const consList = document.getElementById("consList");
+      const planList = document.getElementById("detailedPlanList");
+
+      const blueprints = {
+        physical: {
+          arch: `Physical Health & Somatic Restoration (${topic})`,
+          summary: `<strong>Gentle Mechanical Alert for '${topic}':</strong> Physical ache or tendon strain is your body asking for restful deloading. Forcing repetitive motion through sharp inflammation turns temporary fatigue into chronic nerve entrapment. Listening early protects lifelong mobility.`,
+          pros: [
+            "Prevents irreversible median nerve compression or surgical procedures.",
+            "Restores 90%+ smooth functional typing and lifting within 4 to 6 weeks.",
+            "Releases compensatory shoulder stiffness and deep muscular bracing.",
+            "Restores deep slow-wave sleep by releasing nocturnal throbbing aches."
+          ],
+          cons: [
+            "Requires temporarily softening your daily keyboard and manual work volume.",
+            "Initial awkwardness transitioning to split ergonomics or voice dictation.",
+            "Pushing through pain risks chronic tendon breakdown and medical downtime."
+          ],
+          plan: [
+            "Gently pause repetitive motions on the affected limb for the next 48 hours.",
+            "Apply wrapped cool compresses for 15 minutes, 3 times daily to soothe inflammation.",
+            "Sleep with a relaxed, neutral wrist/joint brace to prevent nighttime nerve bends.",
+            "Switch to voice-to-text dictation (Windows + H or mobile dictation) for writing blocks.",
+            "Introduce an ergonomic vertical mouse with a relaxed 57-degree natural grip.",
+            "Position forearms parallel to desk height with shoulders gently dropped and relaxed.",
+            "Take 2-minute restorative micro-breaks every 30 minutes to release tension.",
+            "Perform gentle median nerve glides: soft palm open, head tilted gently away.",
+            "Gently massage forearm muscles with light, circular thumb strokes.",
+            "Consider physician-approved topical arnica or anti-inflammatory balm during flares.",
+            "Avoid heavy strain or gripping heavy bags directly across finger joints.",
+            "Gradually reintroduce tasks at 50% pace in week 2, honoring your body's boundary.",
+            "If numbness or tingling lingers past 10 days, schedule an objective EMG nerve audit.",
+            "Consider a split ergonomic keyboard to allow your chest and wrists to breathe open.",
+            "Spend 10 minutes every evening doing gentle thoracic spinal openings on a yoga mat."
+          ]
+        },
+        animal: {
+          arch: `Companion Care & Loving Compassion (${topic})`,
+          summary: `<strong>Ending Physical Agony is True Compassion:</strong> Prolonging a companion's existence when they endure incurable pain prolongs their suffering solely to delay our tears. Releasing them gently is the ultimate, selfless gift of protection.`,
+          pros: [
+            "Gently lifts an innocent companion out of endless, unexplainable physical agony.",
+            "Preserves dignity, ensuring their final moments are peaceful in your warm arms.",
+            "Prevents traumatic emergency room hospital crashes in the dark of night.",
+            "Honors the unspoken sacred vow you made to protect them from unnecessary pain."
+          ],
+          cons: [
+            "Brings profound, immediate grief, quiet rooms, and natural tears.",
+            "Temporary irrational questioning of whether the decision was made too soon.",
+            "The quiet ache of empty feeding bowls and routine silence in the home."
+          ],
+          plan: [
+            "Complete the gentle HHHHHMM comfort scale (Hurt, Hunger, Hydration, Hygiene, Happiness, Mobility).",
+            "Gently count comfort days versus pain days on a calendar with total honesty.",
+            "Remember that animal companions live purely in the 'now'; tomorrow holds no meaning if today hurts.",
+            "Speak honestly with your veterinarian regarding remaining comfort reserves.",
+            "Arrange an in-home veterinary transition so they remain resting in their beloved bed.",
+            "Offer them their favorite forbidden delights (sweet treats, gentle broths) in their final hours.",
+            "Surround them with their softest blanket, familiar family scents, and calm whispers.",
+            "Cradle them softly as the calming sedative takes effect, letting them know they are safe.",
+            "Take a gentle clay paw-print or fur keepsake to honor their physical presence.",
+            "Allow yourself to grieve openly and without judgment; grief is the sacred receipt of deep love.",
+            "Leave their resting space untouched until your heart feels naturally ready to organize it.",
+            "Light a small, quiet memorial candle beside their favorite sunny window spot.",
+            "Connect with compassionate pet-bereavement communities or an understanding friend.",
+            "Do not rush to adopt a replacement companion; give your heart spacious room to mourn.",
+            "Find comfort knowing you carried the crushing weight of grief so they no longer had to carry pain."
+          ]
+        },
+        toxic: {
+          arch: `Personal Sanctuary & Dignified Transition (${topic})`,
+          summary: `<strong>Guard Your Peace, Protect Your Runway:</strong> Hostility and emotional turbulence slowly wear down your autonomic nervous system. Yet walking out with zero savings trades workplace toxicity for survival terror. An orderly, quiet exit is your greatest power.`,
+          pros: [
+            "Restores your inner self-worth, calm clarity, and emotional dignity.",
+            "Stops the chronic cortisol flood that fragments your sleep and vitality.",
+            "Opens spacious calendar room for an environment where your talents are celebrated.",
+            "Reclaims complete personal sovereignty over your mental headspace."
+          ],
+          cons: [
+            "Requires holding graceful composure ('quiet detachment') while applying elsewhere.",
+            "Temporary financial mindfulness while reinforcing your 3-month survival shield.",
+            "The initial discomfort of setting firm boundaries with reactive personalities."
+          ],
+          plan: [
+            "Practice the calming 'Gray Rock' technique: become as emotionally unreactive as polished river stone.",
+            "Deliver your core tasks with clean professionalism, quietly declining emotional drama.",
+            "Maintain an offline record of inappropriate demands or boundary violations.",
+            "Ringfence a non-negotiable 3-to-6 month barebones reserve for living peace.",
+            "Update your CV and portfolio quietly, focusing on clear, outcome-driven accomplishments.",
+            "Set LinkedIn to 'Open to Work' for external recruiters only to protect discretion.",
+            "Dedicate 1 tranquil hour every evening to sending thoughtful applications.",
+            "Schedule interviews during calm lunch hours or by taking planned personal leave.",
+            "Ensure an independent health insurance shield is active before your final notice.",
+            "In interviews, speak warmly of your ambitions rather than complaining about past friction.",
+            "Once a signed offer letter is in your hands, submit a calm, polite two-week notice.",
+            "Quietly decline counteroffers; unsupportive environments rarely change their core culture.",
+            "Pack your personal effects discreetly prior to delivering your resignation.",
+            "Take a 5-day peaceful nature pause between roles to reset your nervous system.",
+            "Honor yourself for choosing self-respect over familiar discomfort."
+          ]
+        },
+        burnout: {
+          arch: `Biological Recovery & Nervous Reset (${topic})`,
+          summary: `<strong>A Weary Mind Deserves Deep Cellular Rest:</strong> Working 80 hours while sleeping 4.5 hours is an unsustainable deficit. No title or bonus can replace healthy cardiovascular rhythm and creative joy. Rest is your performance edge.`,
+          pros: [
+            "Restores crisp executive thinking, deep focus, and sharp intuitive clarity.",
+            "Lifts the suffocating veil of brain fog, irritability, and morning dread.",
+            "Normalizes resting cardiovascular rhythm and restores biological resilience.",
+            "Protects long-term career longevity by preventing an involuntary crash."
+          ],
+          cons: [
+            "Requires gracefully saying 'No' to non-essential demands and extra hours.",
+            "Temporary friction with external parties used to your constant availability.",
+            "Letting go of the illusion that your worth equals your exhaustion."
+          ],
+          plan: [
+            "Establish a non-negotiable 7.5-hour sleep sanctuary; treat sleep as a holy biological asset.",
+            "Institute a soothing 6:30 PM digital sunset: laptops closed, work alerts silenced.",
+            "Remove work email and messaging channels completely from your personal phone.",
+            "Cap your total working volume between 45 and 50 hours each week without apology.",
+            "Take an immediate long weekend of zero alarms, natural light, and quiet naps.",
+            "Greet morning daylight for 15 minutes upon waking to naturally balance circadian cortisol.",
+            "Gently transition away from caffeine after 1:00 PM to protect deep restorative delta waves.",
+            "Take a peaceful 30-minute daily walk in a leafy park without headphones or calls.",
+            "Gently automate or decline the bottom 25% of your lowest-value, high-stress tasks.",
+            "Communicate boundaries with calm clarity: 'To keep quality high on X, Y will wait.'",
+            "Nourish your nervous system with warm magnesium-rich herbal tea before resting.",
+            "Reconnect with one joyful, unmonetized activity (sketching, baking, garden tending).",
+            "Have an honest conversation with leadership regarding project balance and realistic goals.",
+            "Build your emergency reserve so you never operate out of fear-driven exhaustion.",
+            "Mark restorative quarterly breathing weekends on your calendar well in advance."
+          ]
+        },
+        financial: {
+          arch: `Mindful Capital Allocation & Growth (${topic})`,
+          summary: `<strong>Nourish Your Earning Potential Before Chasing Markets:</strong> On micro-capital (Rs ${capital.toLocaleString('en-IN')}), stock markets yield modest annual gains (~Rs 140). The true, life-altering 100x return comes from investing in skills that expand your earning power.`,
+          pros: [
+            "100x return potential by converting small capital into monthly earning skills.",
+            "Builds serene financial discipline through automated, stress-free micro-SIPs.",
+            "Completely shields you from reckless options trading, crypto hype, and scam traps.",
+            "Constructs a peaceful cash cushion that keeps you free from debt panic."
+          ],
+          cons: [
+            "Requires patience: real compound growth is calm and slow, not an overnight lottery.",
+            "Requires dedication to study and implement high-yield craft skills.",
+            "Saying a gentle 'no' to mindless impulsive spending on fleeting dopamine buys."
+          ],
+          plan: [
+            "Acknowledge with peace that Rs 1,200 in the stock market yields ~Rs 144/year; release rush.",
+            "Completely avoid speculative derivative trading, meme coins, or shady Telegram tips.",
+            "Direct Rs 500 toward a masterwork book (e.g., The Psychology of Money, Atomic Habits).",
+            "Or allocate Rs 500 toward a career certification tool (design, cloud, copy, software).",
+            "Open a peaceful zero-brokerage mutual fund account (Groww, Zerodha Coin, Kuvera).",
+            "Set up an automated monthly Rs 500 SIP in a low-cost Nifty 50 Index Fund.",
+            "Schedule auto-debit for the 5th of each month so you pay your future self first.",
+            "Park the remaining balance in an auto-sweep account for sudden unexpected moments.",
+            "Practice the calming 24-hour rule: wait a full day before any purchase over Rs 500.",
+            "Track your monthly cash flows with a clean, peaceful notebook or simple spreadsheet.",
+            "Whenever income rises by 10%, gently increase your monthly SIP by 10% in tandem.",
+            "Avoid paying high maintenance fees on unneeded trading or demat accounts.",
+            "Build a peaceful starter buffer of Rs 25,000 before touching individual equities.",
+            "Remain completely calm during market dips; rupee-cost averaging turns dips into opportunities.",
+            "Focus 90% of your energy on expanding your monthly income, not watching stock charts."
+          ]
+        },
+        general: {
+          arch: `Equilibrium & Gentle Decision Clarity (${topic})`,
+          summary: `<strong>Finding Stillness in the Whirlwind:</strong> Your dilemma reflects a friction between daily demands and internal harmony. Resolving it does not require forcing everything at once; it begins with calming the body and clarifying the very next step.`,
+          pros: [
+            "Dissolves chronic overthinking and quietens internal mental loops.",
+            "Restores emotional grounding and gives you a compassionate step-by-step path.",
+            "Prevents fear-driven, reactive decisions you might regret later.",
+            "Reclaims baseline tranquility, physical energy, and restful sleep."
+          ],
+          cons: [
+            "Accepting that every meaningful path involves conscious trade-offs.",
+            "Requires gentle daily discipline even when motivation feels quiet.",
+            "Staying frozen in indecision generates more quiet anxiety than making a gentle choice."
+          ],
+          plan: [
+            "Write your thoughts down on paper; externalizing worries immediately settles cortisol.",
+            "Divide the situation into two columns: 'What I Can Control' vs 'What I Must Release'.",
+            "Lovingly let go of outcomes that lie outside your immediate personal circle.",
+            "Ensure you have eaten warm food, drunk clean water, and slept before deciding.",
+            "Never make permanent life decisions late at night when the mind is tired.",
+            "Speak your heart to one supportive, non-judgmental friend or counselor.",
+            "Look directly at the worst-case scenario: you will see it is survivable and mendable.",
+            "Shrink the intimidating five-year horizon down into one simple, gentle action for today.",
+            "Spend 30 minutes walking in leafy open air without digital distractions.",
+            "Set kind, firm boundaries with situations or people that drain your peace.",
+            "Ask yourself: 'Will this matter in 10 days, 10 months, or 10 years?'",
+            "Accept that there is no flawless choice; there is only the path you choose to make beautiful.",
+            "Protect your first morning hour from news, social media noise, and notifications.",
+            "Take one micro-step within the next 2 hours to release the tension of feeling stuck.",
+            "Review your life equilibrium weekly with deep self-compassion and gentleness."
+          ]
+        }
+      };
+
+      const d = blueprints[type] || blueprints.general;
+      arch.textContent = d.arch;
+      pill.textContent = "Blueprint Harmonized";
+      summary.innerHTML = d.summary;
+
+      prosList.innerHTML = d.pros.map(item => `<li>${item}</li>`).join('');
+      consList.innerHTML = d.cons.map(item => `<li>${item}</li>`).join('');
+      planList.innerHTML = d.plan.map(step => `<li>${step}</li>`).join('');
+    }
+
+    function renderP2PStoryboard(type) {
+      const p2p = document.getElementById("p2pContainer");
+      if (!p2p) return;
+
+      const storyboards = {
+        physical: [
+          { icon: "🍃", title: "Frame 1: Acknowledging Strain", desc: "Recognizing that sharp ache is an invitation to pause and deload inflamed nerve pathways." },
+          { icon: "🛡️", title: "Frame 2: Conscious Deloading", desc: "Ergonomic resting, soothing cool compresses, and voice dictation give tissue room to breathe." },
+          { icon: "🌿", title: "Frame 3: Restored Ease", desc: "Nerve glides and open ergonomics restore effortless, pain-free daily function." }
+        ],
+        animal: [
+          { icon: "🕊️", title: "Frame 1: Enduring Love", desc: "Acknowledging terminal pain and choosing compassion over delaying our own heartbreak." },
+          { icon: "🌸", title: "Frame 2: Peaceful Farewell", desc: "In-home veterinarian facilitates a painless, gentle drift into rest in familiar warmth." },
+          { icon: "⭐", title: "Frame 3: Sacred Memory", desc: "Pain released; dignity honored; the bond lives on in unblemished, joyful gratitude." }
+        ],
+        toxic: [
+          { icon: "🌧️", title: "Frame 1: The Heavy Storm", desc: "Recognizing that chronic hostility and tension are not a price worth paying for survival." },
+          { icon: "⛵", title: "Frame 2: The Safe Harbour", desc: "Quiet detachment, building a 3-month peace reserve, and sending daily calm applications." },
+          { icon: "🌅", title: "Frame 3: Clear Horizons", desc: "Stepping into an environment where your dignity and contributions are celebrated." }
+        ],
+        burnout: [
+          { icon: "⏳", title: "Frame 1: The Fading Flame", desc: "Recognizing that 80-hour exhaustion and fragmented sleep dim your natural creative light." },
+          { icon: "🛑", title: "Frame 2: Setting Sacred Borders", desc: "Enforcing digital sunsets at 6:30 PM, saying gentle nos, and honoring deep 4-day resets." },
+          { icon: "✨", title: "Frame 3: Radiant Vitality", desc: "7.5 hours of cellular sleep restores clarity, calm patience, and steady inner power." }
+        ],
+        financial: [
+          { icon: "🌱", title: "Frame 1: The Modest Seed", desc: "Honoring Rs 1,200 as a valuable foundation rather than chasing reckless speculative hype." },
+          { icon: "📖", title: "Frame 2: Planting in Yourself", desc: "Investing in high-ROI craft skills and books that permanently raise monthly earning power." },
+          { icon: "🌳", title: "Frame 3: The Compounding Grove", desc: "Automated index fund SIPs building a tranquil, unshakeable lifelong security forest." }
+        ],
+        general: [
+          { icon: "🌫️", title: "Frame 1: The Mental Mist", desc: "Untangling overthinking loops and recognizing that decision paralysis is just fear of error." },
+          { icon: "🧭", title: "Frame 2: The Inner Compass", desc: "Separating what you can control from noise and taking one tranquil micro-step." },
+          { icon: "☀️", title: "Frame 3: Grounded Serenity", desc: "Daily physical basics, self-compassion, and calm boundaries restore life equilibrium." }
+        ]
+      };
+
+      const frames = storyboards[type] || storyboards.general;
+      p2p.innerHTML = frames.map(f => `
+        <div class="p2p-card">
+          <div class="p2p-icon">${f.icon}</div>
+          <div class="p2p-title">${f.title}</div>
+          <div class="p2p-desc">${f.desc}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderComparativeChart(inaction, recovery) {
+      const chartCanvas = document.getElementById("trajectoryChart");
+      if (!chartCanvas || typeof Chart === "undefined") return;
+
+      const labels = ["Baseline", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5"];
+      const inData = [inaction[0] + 10, ...inaction];
+      const recData = [inaction[0] + 10, ...recovery];
+
+      if (myChart) myChart.destroy();
+
+      const ctx = chartCanvas.getContext("2d");
+      
+      // Serene Emerald Gradient for Recovery
+      const recGradient = ctx.createLinearGradient(0, 0, 0, 300);
+      recGradient.addColorStop(0, "rgba(20, 184, 166, 0.35)");
+      recGradient.addColorStop(1, "rgba(20, 184, 166, 0.0)");
+
+      myChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: "Future: Active Healing & Restoration (%)",
+              data: recData,
+              borderColor: "#14b8a6",
+              backgroundColor: recGradient,
+              borderWidth: 3,
+              fill: true,
+              tension: 0.35,
+              pointBackgroundColor: "#14b8a6",
+              pointRadius: 4
+            },
+            {
+              label: "Current: Inaction & Slow Decay (%)",
+              data: inData,
+              borderColor: "#f87171",
+              borderDash: [5, 5],
+              borderWidth: 2,
+              fill: false,
+              tension: 0.35,
+              pointBackgroundColor: "#f87171",
+              pointRadius: 3
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              grid: { color: "rgba(148, 163, 184, 0.08)" },
+              ticks: { color: "#94a3b8", font: { size: 11 } }
+            },
+            y: {
+              min: 0,
+              max: 100,
+              grid: { color: "rgba(148, 163, 184, 0.08)" },
+              ticks: { color: "#94a3b8", callback: (v) => v + "%" }
+            }
+          },
+          plugins: {
+            legend: {
+              labels: {
+                color: "#e2e8f0",
+                font: { size: 12, family: "Inter, sans-serif" }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    function updateKPIs(v, m, e) {
+      document.getElementById("kpi_vitality").textContent = v + " / 100";
+      document.getElementById("kpi_mental").textContent = m + " / 100";
+      document.getElementById("kpi_emotional").textContent = e + " / 100";
+      document.getElementById("kpi_equilibrium").textContent = Math.round((v + m + e) / 3) + "%";
+    }
+
+    /* Calming Fluid Waves for Procedural Canvases */
+    function startHarmonicVisualizers(type, topic) {
+      currentDilemmaType = type;
+      if (problemAnimId) cancelAnimationFrame(problemAnimId);
+      if (solutionAnimId) cancelAnimationFrame(solutionAnimId);
+
+      const pCanvas = document.getElementById("problemCanvas");
+      const sCanvas = document.getElementById("solutionCanvas");
+      if (!pCanvas || !sCanvas) return;
+
+      const pCtx = pCanvas.getContext("2d");
+      const sCtx = sCanvas.getContext("2d");
+
+      let pFrame = 0, sFrame = 0;
+
+      function renderProblem() {
+        pFrame += 0.03;
+        pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+
+        // Gentle Ambient Glow
+        const rad = pCtx.createRadialGradient(240, 95, 10, 240, 95, 160);
+        rad.addColorStop(0, "rgba(239, 68, 68, 0.15)");
+        rad.addColorStop(1, "rgba(5, 7, 12, 0)");
+        pCtx.fillStyle = rad;
+        pCtx.fillRect(0, 0, pCanvas.width, pCanvas.height);
+
+        // Fluid Tension Wave
+        pCtx.strokeStyle = "rgba(248, 113, 113, 0.75)";
+        pCtx.lineWidth = 2.5;
+        pCtx.beginPath();
+        for (let x = 0; x < pCanvas.width; x += 3) {
+          let decay = (x / pCanvas.width) * 35;
+          let y = 95 + decay + Math.sin(x * 0.02 + pFrame) * 16 + Math.cos(x * 0.04 - pFrame * 0.5) * 8;
+          if (x === 0) pCtx.moveTo(x, y); else pCtx.lineTo(x, y);
+        }
+        pCtx.stroke();
+
+        problemAnimId = requestAnimationFrame(renderProblem);
+      }
+
+      function renderSolution() {
+        sFrame += 0.025;
+        sCtx.clearRect(0, 0, sCanvas.width, sCanvas.height);
+
+        // Restorative Aurora Glow
+        const rad = sCtx.createRadialGradient(240, 95, 10, 240, 95, 160);
+        rad.addColorStop(0, "rgba(20, 184, 166, 0.2)");
+        rad.addColorStop(1, "rgba(5, 7, 12, 0)");
+        sCtx.fillStyle = rad;
+        sCtx.fillRect(0, 0, sCanvas.width, sCanvas.height);
+
+        // Smooth Oceanic Wave
+        sCtx.strokeStyle = "rgba(52, 211, 153, 0.85)";
+        sCtx.lineWidth = 2.8;
+        sCtx.beginPath();
+        for (let x = 0; x < sCanvas.width; x += 3) {
+          let rise = Math.pow(x / sCanvas.width, 1.6) * 65;
+          let y = 140 - rise + Math.sin(x * 0.015 - sFrame) * 10;
+          if (x === 0) sCtx.moveTo(x, y); else sCtx.lineTo(x, y);
+        }
+        sCtx.stroke();
+
+        solutionAnimId = requestAnimationFrame(renderSolution);
+      }
+
+      renderProblem();
+      renderSolution();
+    }
+
+    window.addEventListener("load", () => {
+      compileAndSimulate();
+    });
+  </script>
+</body>
+</html>
